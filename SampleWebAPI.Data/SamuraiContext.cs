@@ -25,6 +25,11 @@ namespace SampleWebAPI.Data
         public DbSet<Battle> Battles { get; set; }
         public DbSet<SamuraiBattleStat> SamuraiBattleStats { get; set; }
 
+        public DbSet<Sword> Swords { get; set; }
+        public DbSet<Element> Elements { get; set; }
+        public DbSet<Tipe> Tipes { get; set; }
+
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

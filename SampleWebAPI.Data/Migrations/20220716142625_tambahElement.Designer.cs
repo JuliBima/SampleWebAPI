@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SampleWebAPI.Data;
 
@@ -11,9 +12,10 @@ using SampleWebAPI.Data;
 namespace SampleWebAPI.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    partial class SamuraiContextModelSnapshot : ModelSnapshot
+    [Migration("20220716142625_tambahElement")]
+    partial class tambahElement
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -194,29 +196,6 @@ namespace SampleWebAPI.Data.Migrations
                     b.ToTable("Swords");
                 });
 
-            modelBuilder.Entity("SampleWebAPI.Domain.Tipe", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SwordId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SwordId")
-                        .IsUnique();
-
-                    b.ToTable("Tipes");
-                });
-
             modelBuilder.Entity("ElementSword", b =>
                 {
                     b.HasOne("SampleWebAPI.Domain.Element", null)
@@ -278,15 +257,6 @@ namespace SampleWebAPI.Data.Migrations
                     b.Navigation("Samurai");
                 });
 
-            modelBuilder.Entity("SampleWebAPI.Domain.Tipe", b =>
-                {
-                    b.HasOne("SampleWebAPI.Domain.Sword", null)
-                        .WithOne("Tipe")
-                        .HasForeignKey("SampleWebAPI.Domain.Tipe", "SwordId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("SampleWebAPI.Domain.Samurai", b =>
                 {
                     b.Navigation("Horse")
@@ -295,12 +265,6 @@ namespace SampleWebAPI.Data.Migrations
                     b.Navigation("Quotes");
 
                     b.Navigation("Swords");
-                });
-
-            modelBuilder.Entity("SampleWebAPI.Domain.Sword", b =>
-                {
-                    b.Navigation("Tipe")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
