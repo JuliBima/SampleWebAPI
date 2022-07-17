@@ -17,6 +17,17 @@ namespace SampleWebAPI.Profiles
 
             CreateMap<QuoteDTO, Quote>();
             CreateMap<Quote,QuoteDTO>();
+            //Sword
+            CreateMap<SwordDTO, Sword>();
+            CreateMap<Sword, SwordDTO>();   
+            CreateMap<SwordCreateDTO, Sword>();
+            CreateMap<Sword, SwordCreateDTO>();
+            //Element
+            CreateMap<ElementDTO, Element>();
+            CreateMap<Element, ElementDTO>();
+            CreateMap<ElementCreateDTO, Element>();
+            CreateMap<Element, ElementCreateDTO>();
+
         }
     }
 }

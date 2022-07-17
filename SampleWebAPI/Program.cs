@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using SampleWebAPI.Data;
 using SampleWebAPI.Data.DAL;
+using SampleWebAPI.Domain;
 using SampleWebAPI.Helpers;
 using SampleWebAPI.Services;
 
@@ -24,6 +25,9 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 //inject class DAL
 builder.Services.AddScoped<ISamurai, SamuraiDAL>();
 builder.Services.AddScoped<IQuote, QuotesDAL>();
+builder.Services.AddScoped<ISword, SwordsDAL>();
+builder.Services.AddScoped<IElement, ElementDAL>();
+
 
 // configure strongly typed settings object
 builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));

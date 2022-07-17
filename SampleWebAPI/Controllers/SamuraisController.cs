@@ -21,7 +21,7 @@ namespace SampleWebAPI.Controllers
             _mapper = mapper;
         }
 
-        [Authorize]
+        
         [HttpGet]
         public async Task<IEnumerable<SamuraiReadDTO>> Get()
         {
@@ -40,7 +40,7 @@ namespace SampleWebAPI.Controllers
             return samuraiDTO;
         }
 
-        [Authorize]
+       
         [HttpGet("{id}")]
         public async Task<SamuraiReadDTO> Get(int id)
         {
@@ -54,7 +54,7 @@ namespace SampleWebAPI.Controllers
             return samuraiDTO;
         }
 
-        [Authorize]
+        
         [HttpGet("ByName")]
         public async Task<IEnumerable<SamuraiReadDTO>> GetByName(string name)
         {
@@ -71,7 +71,7 @@ namespace SampleWebAPI.Controllers
             return samuraiDtos;
         }
 
-        [Authorize]
+        
         [HttpGet("WithQuotes")]
         public async Task<IEnumerable<SamuraiWithQuotesDTO>> GetSamuraiWithQuote()
         {
@@ -80,7 +80,7 @@ namespace SampleWebAPI.Controllers
             return samuraiWithQuoteDtos;
         }
 
-        [Authorize]
+        
         [HttpPost]
         public async Task<ActionResult> Post(SamuraiCreateDTO samuraiCreateDto)
         {
@@ -98,7 +98,7 @@ namespace SampleWebAPI.Controllers
             }
         }
 
-        [Authorize]
+        
         [HttpPut]
         public async Task<ActionResult> Put(SamuraiReadDTO samuraiDto)
         {

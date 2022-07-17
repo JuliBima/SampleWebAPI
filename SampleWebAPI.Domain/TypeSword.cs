@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SampleWebAPI.Domain
 {
-    public class Tipe
+    public class TypeSword
     {
         public int Id { get; set; }
         public string Name { get; set; }
