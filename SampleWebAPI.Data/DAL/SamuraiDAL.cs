@@ -60,7 +60,7 @@ namespace SampleWebAPI.Data.DAL
             var samurais = await _context.Samurais.Include(s => s.Swords).ToListAsync();
 
             foreach (var sword in samurais)
-                await _context.Swords.Include(s => s.TypeSwords).ToListAsync();
+                await _context.Swords.Include(s => s.TypeSwords).Include(e => e.Elements).ToListAsync();
 
             //.ThenInclude(t => t.TypeSwords)
             //.Include(t => t.Swords)
