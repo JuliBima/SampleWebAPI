@@ -50,7 +50,11 @@ namespace SampleWebAPI.Data.DAL
             return swords;
         }
 
-        
+        public async Task<IEnumerable<Sword>> GetWithType()
+        {
+            var swordWithtype = await _context.Swords.Include(s => s.TypeSwords).ToListAsync(); 
+            return swordWithtype;
+        }
 
         public async Task<Sword> Insert(Sword obj)
         {

@@ -28,6 +28,7 @@ builder.Services.AddScoped<IQuote, QuotesDAL>();
 builder.Services.AddScoped<ISword, SwordsDAL>();
 builder.Services.AddScoped<IElement, ElementDAL>();
 builder.Services.AddScoped<ITypeSword, TypeSwordDAL>();
+builder.Services.AddScoped<IRegistrasi, RegistrasiDAL>();
 
 
 // configure strongly typed settings object

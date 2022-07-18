@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleWebAPI.Domain", "Samp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleWebAPI.Data", "SampleWebAPI.Data\SampleWebAPI.Data.csproj", "{4627B7FC-262C-4FF3-B2DC-7E7BC2DAEDB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleReverseDb", "ConsoleReverseDb\ConsoleReverseDb.csproj", "{8C1C44AD-25A1-45FE-B8CA-A5F8D8838FCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleReverseDb", "ConsoleReverseDb\ConsoleReverseDb.csproj", "{8C1C44AD-25A1-45FE-B8CA-A5F8D8838FCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

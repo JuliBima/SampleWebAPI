@@ -106,7 +106,24 @@ namespace SampleWebAPI.Controllers
             }
         }
 
-        
+        [HttpPost("WithSword")]
+        public async Task<ActionResult> Post(SamuraiWithSwordDTO samuraiCreateDto)
+        {
+            try
+            {
+                var newSamurai = _mapper.Map<Samurai>(samuraiCreateDto);
+                var result = await _samuraiDAL.InsertWithSword(newSamurai);
+                var samuraiReadDto = _mapper.Map<SamuraiWithSwordDTO>(result);
+
+                return CreatedAtAction("Get", new { id = result.Id }, samuraiReadDto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
         [HttpPut]
         public async Task<ActionResult> Put(SamuraiReadDTO samuraiDto)
         {

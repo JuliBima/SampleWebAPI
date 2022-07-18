@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SampleWebAPI.Domain
 {
-    internal class ElementSword
+    public class ElementSword
     {
-        public int ElementsElementId { get; set; }
+        public int ElementId { get; set; }
         public int SwordId { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SampleWebAPI.Data;
 
@@ -11,9 +12,10 @@ using SampleWebAPI.Data;
 namespace SampleWebAPI.Data.Migrations
 {
     [DbContext(typeof(SamuraiContext))]
-    partial class SamuraiContextModelSnapshot : ModelSnapshot
+    [Migration("20220719011821_tambahTabelUser")]
+    partial class tambahTabelUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +23,21 @@ namespace SampleWebAPI.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("ElementSword", b =>
+                {
+                    b.Property<int>("ElementsElementId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SwordsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ElementsElementId", "SwordsId");
+
+                    b.HasIndex("SwordsId");
+
+                    b.ToTable("ElementSword");
+                });
 
             modelBuilder.Entity("SampleWebAPI.Domain.Battle", b =>
                 {
@@ -74,21 +91,6 @@ namespace SampleWebAPI.Data.Migrations
                     b.HasKey("ElementId");
 
                     b.ToTable("Elements");
-                });
-
-            modelBuilder.Entity("SampleWebAPI.Domain.ElementSword", b =>
-                {
-                    b.Property<int>("ElementId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SwordId")
-                        .HasColumnType("int");
-
-                    b.HasKey("ElementId", "SwordId");
-
-                    b.HasIndex("SwordId");
-
-                    b.ToTable("ElementSword");
                 });
 
             modelBuilder.Entity("SampleWebAPI.Domain.Horse", b =>
@@ -246,6 +248,21 @@ namespace SampleWebAPI.Data.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("ElementSword", b =>
+                {
+                    b.HasOne("SampleWebAPI.Domain.Element", null)
+                        .WithMany()
+                        .HasForeignKey("ElementsElementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SampleWebAPI.Domain.Sword", null)
+                        .WithMany()
+                        .HasForeignKey("SwordsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("SampleWebAPI.Domain.BattleSamurai", b =>
                 {
                     b.HasOne("SampleWebAPI.Domain.Battle", null)
@@ -257,21 +274,6 @@ namespace SampleWebAPI.Data.Migrations
                     b.HasOne("SampleWebAPI.Domain.Samurai", null)
                         .WithMany()
                         .HasForeignKey("SamuraiId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SampleWebAPI.Domain.ElementSword", b =>
-                {
-                    b.HasOne("SampleWebAPI.Domain.Element", null)
-                        .WithMany()
-                        .HasForeignKey("ElementId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("SampleWebAPI.Domain.Sword", null)
-                        .WithMany()
-                        .HasForeignKey("SwordId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

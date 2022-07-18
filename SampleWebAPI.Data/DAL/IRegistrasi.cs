@@ -7,10 +7,7 @@ using System.Threading.Tasks;
 
 namespace SampleWebAPI.Data.DAL
 {
-    public interface ISword : ICrud<Sword>
+    public interface IRegistrasi : ICrud<User>
     {
-        Task<IEnumerable<Sword>> GetByName(string name);
-        Task<IEnumerable<Sword>> GetWithType();
-
     }
 }

@@ -14,6 +14,7 @@ namespace SampleWebAPI.Data.DAL
 
         Task<IEnumerable<Samurai>> GetSamuraiWithSwordTypeElement();
 
-        
+        Task<Samurai> InsertWithSword(Samurai samurai);
+       
     }
 }
