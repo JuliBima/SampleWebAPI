@@ -27,6 +27,7 @@ builder.Services.AddScoped<ISamurai, SamuraiDAL>();
 builder.Services.AddScoped<IQuote, QuotesDAL>();
 builder.Services.AddScoped<ISword, SwordsDAL>();
 builder.Services.AddScoped<IElement, ElementDAL>();
+builder.Services.AddScoped<ITypeSword, TypeSwordDAL>();
 
 
 // configure strongly typed settings object

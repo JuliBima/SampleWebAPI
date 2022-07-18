@@ -15,9 +15,20 @@ namespace SampleWebAPI.Data.DAL
         {
             _context = context;
         }
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var deleteElement = await _context.Elements.FirstOrDefaultAsync(s => s.ElementId == id);
+                if (deleteElement == null)
+                    throw new Exception($"Data Element dengan id {id} tidak ditemukan");
+                _context.Elements.Remove(deleteElement);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message}");
+            }
         }
 
         public async Task<IEnumerable<Element>> GetAll()
@@ -38,14 +49,36 @@ namespace SampleWebAPI.Data.DAL
             return elements;
         }
 
-        public Task<Element> Insert(Element obj)
+        public async Task<Element> Insert(Element obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Elements.Add(obj);
+                await _context.SaveChangesAsync();
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message}");
+            }
         }
 
-        public Task<Element> Update(Element obj)
+        public async Task<Element> Update(Element obj)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var updateElement = await _context.Elements.FirstOrDefaultAsync(s => s.ElementId == obj.ElementId);
+                if (updateElement == null)
+                    throw new Exception($"Data Element dengan id {obj.ElementId} tidak ditemukan");
+
+                updateElement.Name = obj.Name;
+                await _context.SaveChangesAsync();
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message}");
+            }
         }
     }
 }

@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SampleWebAPI.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SampleWebAPI.Data.DAL
 {
@@ -59,6 +54,22 @@ namespace SampleWebAPI.Data.DAL
             return samurais;
         }
 
+        //Belum Jalan
+        public async Task<IEnumerable<Samurai>> GetSamuraiWithSwordTypeElement()
+        {
+            var samurais = await _context.Samurais.Include(s => s.Swords).ToListAsync();
+
+            foreach (var sword in samurais)
+                await _context.Swords.Include(s => s.TypeSwords).ToListAsync();
+
+            //.ThenInclude(t => t.TypeSwords)
+            //.Include(t => t.Swords)
+            //.ThenInclude(e => e.Elements)
+
+
+            return samurais;
+        }
+
         public async Task<Samurai> Insert(Samurai obj)
         {
             try
@@ -72,6 +83,8 @@ namespace SampleWebAPI.Data.DAL
                 throw new Exception($"{ex.Message}");
             }
         }
+
+        
 
         public async Task<Samurai> Update(Samurai obj)
         {

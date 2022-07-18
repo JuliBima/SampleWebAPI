@@ -80,7 +80,15 @@ namespace SampleWebAPI.Controllers
             return samuraiWithQuoteDtos;
         }
 
-        
+        [HttpGet("WithSwordTypeElement")]
+        public async Task<IEnumerable<SamuraiWithSwordTypeSwordElementDTO>> GetSamuraiWithSwordTypeElement()
+        {
+            var results = await _samuraiDAL.GetSamuraiWithSwordTypeElement();
+            var samuraiWithQuoteDtos = _mapper.Map<IEnumerable<SamuraiWithSwordTypeSwordElementDTO>>(results);
+            return samuraiWithQuoteDtos;
+        }
+
+
         [HttpPost]
         public async Task<ActionResult> Post(SamuraiCreateDTO samuraiCreateDto)
         {
@@ -132,6 +140,8 @@ namespace SampleWebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+       
 
     }
 }

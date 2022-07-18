@@ -8,7 +8,7 @@ namespace SampleWebAPI.Domain
 {
     internal class ElementSword
     {
-        public int ElementId { get; set; }
+        public int ElementsElementId { get; set; }
         public int SwordId { get; set; }
     }
 }
