@@ -2,7 +2,7 @@
 {
     public class SamuraiWithSwordDTO
     {
-        public SamuraiCreateDTO Samurai { get; set; }
-        public List<SwordCreateDTO> Swords { get; set; }
+        public string Name { get; set; }
+        public List<SwordInputDTO> Swords { get; set; }
     }
 }

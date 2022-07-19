@@ -66,6 +66,23 @@ namespace SampleWebAPI.Controllers
             }
         }
 
+        [HttpPost("WithType")]
+        public async Task<ActionResult> Post(SwordWithTypeCreateDTO swordCreateDto)
+        {
+            try
+            {
+                var newSword = _mapper.Map<Sword>(swordCreateDto);
+                var result = await _swordDAL.InsertWithType(newSword);
+                var swordDto = _mapper.Map<SwordWithTypeCreateDTO>(result);
+
+                return CreatedAtAction("Get", new { id = result.Id }, swordDto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPut]
         public async Task<ActionResult> Put(SwordDTO swordDto)
         {

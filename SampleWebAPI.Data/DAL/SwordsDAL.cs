@@ -70,6 +70,21 @@ namespace SampleWebAPI.Data.DAL
             }
         }
 
+        public async Task<Sword> InsertWithType(Sword sword)
+        {
+            try
+            {
+                _context.Swords.Add(sword);
+                await _context.SaveChangesAsync();
+                return sword;
+               
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message}");
+            }
+        }
+
         public async Task<Sword> Update(Sword obj)
         {
             try

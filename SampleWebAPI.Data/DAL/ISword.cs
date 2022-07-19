@@ -12,5 +12,7 @@ namespace SampleWebAPI.Data.DAL
         Task<IEnumerable<Sword>> GetByName(string name);
         Task<IEnumerable<Sword>> GetWithType();
 
+        Task<Sword> InsertWithType(Sword sword);
+
     }
 }

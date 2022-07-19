@@ -85,30 +85,39 @@ namespace SampleWebAPI.Data.DAL
 
         public async Task<Samurai> InsertWithSword(Samurai samurai)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Samurais.Add(samurai);
+                await _context.SaveChangesAsync();
+                return samurai;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message}");
+            }
         }
+
+
 
 
 
         //public async Task<Samurai> InsertSamuraiWithSword(Samurai samurai, Sword sword)
         //{
 
-        //    var samurais = new Samurai
+
+        //    //_context.Samurais.Add(samurais);
+        //    //_context.SaveChanges();
+        //    try
         //    {
-        //        Name = { samurai },
-        //        Quotes = new List<Quote>
-        //{
-        //    new Sword{Text = "Jangan Panggil Anak Kecil"},
-        //    new Sword{Text = "Datebayoo"}
-        //}
-        //    };
-        //    _context.Samurais.Add(samurais);
-        //    _context.SaveChanges();
-        //    //var sam = _context.Samurais.Add(samurai);
-        //    //if (sam != null)
-        //    //    _context.Swords.Add(sword);
-        //    //await _context.SaveChangesAsync();
-        //    //return await _context;         
+        //        var sam = _context.Samurais.Add(samurai);
+        //        if (sam != null)
+        //            _context.Swords.Add(sword);
+        //        await _context.SaveChangesAsync();
+        //        return _context();
+        //    } catch (Exception ex)
+        //    {
+        //        throw new Exception($"{ex.Message}");
+        //    }
 
         //    //throw new NotImplementedException();
         //}

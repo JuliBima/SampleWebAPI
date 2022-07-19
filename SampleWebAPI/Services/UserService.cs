@@ -18,10 +18,11 @@ namespace SampleWebAPI.Services
     {
         private List<User> _users = new List<User>
         {
-        new User { Id = 1, 
-            FirstName = "Test", 
-            LastName = "User", 
-            Username = "test", 
+
+        new User { Id = 1,
+            FirstName = "Test",
+            LastName = "User",
+            Username = "test",
             Password = "test" }
         };
 
@@ -34,6 +35,7 @@ namespace SampleWebAPI.Services
 
         public AuthenticateResponse Authenticate(AuthenticateRequest model)
         {
+
             var user = _users.SingleOrDefault(x => x.Username == model.Username && x.Password == model.Password);
 
             // return null if user not found

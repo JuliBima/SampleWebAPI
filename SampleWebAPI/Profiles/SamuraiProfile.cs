@@ -39,6 +39,20 @@ namespace SampleWebAPI.Profiles
             CreateMap<SwordWithTypeDTO, Sword>();
             CreateMap<Sword, SwordWithTypeDTO>();
 
+            CreateMap<SwordInputDTO, Sword>();
+            CreateMap<Sword, SwordInputDTO>();
+
+            CreateMap<SwordWithTypeCreateDTO, Sword>();
+            CreateMap<Sword, SwordWithTypeCreateDTO>();
+
+            CreateMap<TypeSword, TypeSwordReadDTO>();
+            CreateMap<TypeSwordReadDTO, TypeSword >();
+
+            CreateMap<Sword, TypeSwordReadDTO>();
+            CreateMap<TypeSwordReadDTO, Sword>();
+
+
+
 
 
             CreateMap<QuoteDTO, Quote>();
@@ -58,6 +72,7 @@ namespace SampleWebAPI.Profiles
             CreateMap<TypeSword, TypeSwordDTO>();
             CreateMap<TypeSwordCreateDTO, TypeSword>();
             CreateMap<TypeSword, TypeSwordCreateDTO>();
+
 
         }
     }
