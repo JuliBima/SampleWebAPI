@@ -41,20 +41,50 @@ namespace SampleWebAPI.Data.DAL
 
         public async Task<Element> ElementToExistingSword(Element obj)
         {
-
             try
             {
-                
-                _context.Swords.Include(b=>b.Elements).FirstOrDefaultAsync();
-                
-                _context.Elements.Add(obj);
-                await _context.SaveChangesAsync();
+
+                var samurai = _context.Swords.Find(obj.ElementId);
+                if (samurai != null)
+                {
+                    samurai.Elements.Add(obj);
+                    await _context.SaveChangesAsync();
+                }
                 return obj;
+                //var sword = _context.Swords.Find(obj.ElementId);
+                //var element = _context.Elements.Find(obj.ElementId);
+
+                //sword.Elements.Add(element);
+
+                //await _context.SaveChangesAsync();
+                //return obj;
             }
             catch (Exception ex)
             {
                 throw new Exception($"{ex.Message}");
             }
+
+            //var element = await _context.Elements.FirstOrDefaultAsync(s => s.ElementId == obj.ElementId);
+            //if (element == null)
+            //    throw new Exception($"Data Element dengan id {obj.ElementId} tidak ditemukan");
+
+            //element.Swords.Add(obj.Id);
+
+            //await _context.SaveChangesAsync();
+            //return obj;
+
+            //try
+            //{
+
+            //    _context.Swords.Include(b => b.Elements).ToListAsync();
+            //    _context.Elements.Add(obj);
+            //    await _context.SaveChangesAsync();
+            //    return obj;
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw new Exception($"{ex.Message}");
+            //}
         }
 
         public async Task<IEnumerable<Element>> GetAll()

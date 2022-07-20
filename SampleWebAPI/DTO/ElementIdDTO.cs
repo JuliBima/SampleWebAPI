@@ -2,6 +2,6 @@
 {
     public class ElementIdDTO
     {
-        public int ElementId { get; set; }
+        public string Name { get; set; }
     }
 }

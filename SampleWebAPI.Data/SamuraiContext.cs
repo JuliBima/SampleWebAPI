@@ -34,9 +34,9 @@ namespace SampleWebAPI.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-           //optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SampleDb")
-           //     .LogTo(Console.WriteLine, new[] {DbLoggerCategory.Database.Command.Name},
-           //     Microsoft.Extensions.Logging.LogLevel.Information).EnableSensitiveDataLogging();
+            //optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=SampleDb")
+            //     .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Command.Name },
+            //     Microsoft.Extensions.Logging.LogLevel.Information).EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

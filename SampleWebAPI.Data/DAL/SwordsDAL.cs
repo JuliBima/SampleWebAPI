@@ -32,12 +32,25 @@ namespace SampleWebAPI.Data.DAL
             }
         }
 
+
+
         public async Task<Sword> ExistingSword(Sword obj)
         {
 
-            _context.Swords.Add(obj);
-            await _context.SaveChangesAsync();
-            return obj;
+            try
+            {
+                var sword = _context.Swords.Find(obj.Id);
+                var element = _context.Elements.Find(obj.ElementId);
+
+                element.Swords.Add(sword);
+
+                await _context.SaveChangesAsync();
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message}");
+            }
 
         }
 

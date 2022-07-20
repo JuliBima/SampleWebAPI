@@ -2,10 +2,11 @@
 {
     public class ElementToExistingSwordDTO
     {
-        public int ElementId { get; set; }
+        public int Id { get; set; }
+        public int SwordId { get; set; }
 
-        public List<SwordIdDTO> SwordId { get; set; }
-        
+        public int SamuraiId { get; set; }
+
 
     }
 

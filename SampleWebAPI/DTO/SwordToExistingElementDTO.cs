@@ -4,6 +4,6 @@
     {
 
         public int Id { get; set; }
-        public List<ElementIdDTO> ElementId { get; set; }
+        public int ElementId { get; set; }
     }
 }

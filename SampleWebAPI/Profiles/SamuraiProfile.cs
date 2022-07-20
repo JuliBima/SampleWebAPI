@@ -64,6 +64,7 @@ namespace SampleWebAPI.Profiles
             CreateMap<Element, ElementToExistingSwordDTO>();
             CreateMap<ElementToExistingSwordDTO, Sword>();
             CreateMap<Sword, ElementToExistingSwordDTO>();
+           
 
 
 
