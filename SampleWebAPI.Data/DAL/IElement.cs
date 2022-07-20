@@ -10,5 +10,8 @@ namespace SampleWebAPI.Data.DAL
     public interface IElement : ICrud<Element>
     {
         Task<IEnumerable<Element>> GetByName(string name);
+        Task DeleteElementinSword(int id);
+
+        Task<Element> ElementToExistingSword(Element obj);
     }
 }

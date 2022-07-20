@@ -32,6 +32,15 @@ namespace SampleWebAPI.Data.DAL
             }
         }
 
+        public async Task<Sword> ExistingSword(Sword obj)
+        {
+
+            _context.Swords.Add(obj);
+            await _context.SaveChangesAsync();
+            return obj;
+
+        }
+
         public async Task<IEnumerable<Sword>> GetAll()
         {
             var results = await _context.Swords.OrderBy(s => s.Weight).ToListAsync();

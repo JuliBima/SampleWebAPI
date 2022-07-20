@@ -83,6 +83,23 @@ namespace SampleWebAPI.Controllers
             }
         }
 
+        //[HttpPost("Existing/{id}")]
+        //public async Task<ActionResult> Post(SwordToExistingElementDTO swordCreateDto)
+        //{
+        //    try
+        //    {
+        //        var newSword = _mapper.Map<Sword>(swordCreateDto);
+        //        var result = await _swordDAL.ExistingSword(newSword);
+        //        var swordDto = _mapper.Map<SwordToExistingElementDTO>(result);
+
+        //        return CreatedAtAction("Get", new { id = result.Id }, swordDto);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
+
         [HttpPut]
         public async Task<ActionResult> Put(SwordDTO swordDto)
         {
@@ -107,6 +124,22 @@ namespace SampleWebAPI.Controllers
             {
                 await _swordDAL.Delete(id);
                 return Ok($"Data samurai dengan id {id} berhasil didelete");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost("Existing")]
+        public async Task<ActionResult> Post(SwordToExistingElementDTO elementCreateDto)
+        {
+            try
+            {
+                var newElement = _mapper.Map<Sword>(elementCreateDto);
+                var result = await _swordDAL.ExistingSword(newElement);
+                var elementDto = _mapper.Map<SwordToExistingElementDTO>(result);
+
+                return CreatedAtAction("Get", new { id = result.Id }, elementDto);
             }
             catch (Exception ex)
             {

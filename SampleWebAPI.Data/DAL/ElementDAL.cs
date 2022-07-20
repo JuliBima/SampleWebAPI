@@ -31,6 +31,32 @@ namespace SampleWebAPI.Data.DAL
             }
         }
 
+        public async Task DeleteElementinSword(int id)
+        {
+            var elemet = await _context.Swords.Include(b => b.Elements).FirstOrDefaultAsync(s => s.Id == id); 
+            var sword = elemet.Elements[0];
+            elemet.Elements.Remove(sword);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Element> ElementToExistingSword(Element obj)
+        {
+
+            try
+            {
+                
+                _context.Swords.Include(b=>b.Elements).FirstOrDefaultAsync();
+                
+                _context.Elements.Add(obj);
+                await _context.SaveChangesAsync();
+                return obj;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{ex.Message}");
+            }
+        }
+
         public async Task<IEnumerable<Element>> GetAll()
         {
             var elements = await _context.Elements.OrderBy(q => q.Name).ToListAsync();

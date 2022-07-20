@@ -87,5 +87,36 @@ namespace SampleWebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete("ElementFromSword/{id}")]
+        public async Task<ActionResult> Delete2(int id)
+        {
+            try
+            {
+                await _elementDAl.DeleteElementinSword(id);
+                return Ok($"Data Element dengan id {id} berhasil didelete");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("ExistingSword")]
+        public async Task<ActionResult> Post(ElementToExistingSwordDTO elementCreateDto)
+        {
+            try
+            {
+                var newElement = _mapper.Map<Element>(elementCreateDto);
+                var result = await _elementDAl.ElementToExistingSword(newElement);
+                var elementDto = _mapper.Map<ElementToExistingSwordDTO>(result);
+
+                return CreatedAtAction("Get", new { id = result.ElementId }, elementDto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
