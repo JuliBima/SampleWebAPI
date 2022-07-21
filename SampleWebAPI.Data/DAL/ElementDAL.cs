@@ -15,6 +15,18 @@ namespace SampleWebAPI.Data.DAL
         {
             _context = context;
         }
+
+        public async Task AddElementToExistingSword(int elemenID, int swordID)
+        {
+            var element = _context.Elements.FirstOrDefault(s=>s.ElementId == elemenID);
+            var sword = _context.Swords.FirstOrDefault(s => s.Id == swordID);
+
+            sword.Elements.Add(element);
+
+            await _context.SaveChangesAsync();
+           
+        }
+
         public async Task Delete(int id)
         {
             try
@@ -39,53 +51,63 @@ namespace SampleWebAPI.Data.DAL
             await _context.SaveChangesAsync();
         }
 
-        public async Task<Element> ElementToExistingSword(Element obj)
-        {
-            try
-            {
+        //public async Task<Element> ElementToExistingSword(Element obj)
+        //{
+        //    try
+        //    {
 
-                var samurai = _context.Swords.Find(obj.ElementId);
-                if (samurai != null)
-                {
-                    samurai.Elements.Add(obj);
-                    await _context.SaveChangesAsync();
-                }
-                return obj;
-                //var sword = _context.Swords.Find(obj.ElementId);
-                //var element = _context.Elements.Find(obj.ElementId);
+        //        var element = _context.Elements.FirstOrDefault(s => s.ElementId == obj.ElementId);
+        //        var sword = _context.Swords.FirstOrDefault(s => s.Id == obj.);
 
-                //sword.Elements.Add(element);
+        //        sword.Elements.Add(element);
 
-                //await _context.SaveChangesAsync();
-                //return obj;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"{ex.Message}");
-            }
+        //        await _context.SaveChangesAsync();
+        //        //var sword = _context.Swords.Find(obj.ElementId);
+        //        //if (sword != null)
+        //        //{
+        //        //    var element = _context.Elements.Find(obj.ElementId);
+        //        //    sword.Elements.Add(element);
+        //        //    await _context.SaveChangesAsync();
+        //        //}
+        //        //return obj;
 
-            //var element = await _context.Elements.FirstOrDefaultAsync(s => s.ElementId == obj.ElementId);
-            //if (element == null)
-            //    throw new Exception($"Data Element dengan id {obj.ElementId} tidak ditemukan");
 
-            //element.Swords.Add(obj.Id);
+        //        //var element = _context.Elements.Find(obj.ElementId);
+        //        //var sword = _context.Swords.Find(obj.ElementId);
 
-            //await _context.SaveChangesAsync();
-            //return obj;
+        //        //sword.Elements.Add(element);
 
-            //try
-            //{
+        //        //await _context.SaveChangesAsync();
+        //        //return obj;
 
-            //    _context.Swords.Include(b => b.Elements).ToListAsync();
-            //    _context.Elements.Add(obj);
-            //    await _context.SaveChangesAsync();
-            //    return obj;
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw new Exception($"{ex.Message}");
-            //}
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception($"{ex.Message}");
+        //    }
+
+        //    //var element = await _context.Elements.FirstOrDefaultAsync(s => s.ElementId == obj.ElementId);
+        //    //if (element == null)
+        //    //    throw new Exception($"Data Element dengan id {obj.ElementId} tidak ditemukan");
+
+        //    //element.Swords.Add(obj.Id);
+
+        //    //await _context.SaveChangesAsync();
+        //    //return obj;
+
+        //    //try
+        //    //{
+
+        //    //    _context.Swords.Include(b => b.Elements).ToListAsync();
+        //    //    _context.Elements.Add(obj);
+        //    //    await _context.SaveChangesAsync();
+        //    //    return obj;
+        //    //}
+        //    //catch (Exception ex)
+        //    //{
+        //    //    throw new Exception($"{ex.Message}");
+        //    //}
+        //}
 
         public async Task<IEnumerable<Element>> GetAll()
         {

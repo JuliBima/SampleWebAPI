@@ -87,6 +87,9 @@ namespace SampleWebAPI.Profiles
             CreateMap<TypeSwordCreateDTO, TypeSword>();
             CreateMap<TypeSword, TypeSwordCreateDTO>();
 
+            //USER
+            CreateMap<User, UserDTO>();
+            CreateMap<UserDTO, User>();
 
         }
     }

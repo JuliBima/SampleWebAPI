@@ -2,10 +2,15 @@
 {
     public class ElementToExistingSwordDTO
     {
-        public int Id { get; set; }
-        public int SwordId { get; set; }
 
-        public int SamuraiId { get; set; }
+        public int ElementId { get; set; }
+        public SwordIdDTO SwordId { get; set; }
+        //public int SwordId { get; set; }
+        //public int SamuraiId { get; set; }
+
+        //public string Name { get; set; }
+
+        //public int SamuraiId { get; set; }
 
 
     }
