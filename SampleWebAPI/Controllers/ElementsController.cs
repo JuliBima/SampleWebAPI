@@ -102,16 +102,16 @@ namespace SampleWebAPI.Controllers
             }
         }
 
-        [HttpPost("ExistingSword")]
-        public async Task<ActionResult> Post(ElementToExistingSwordDTO elementCreateDto)
+        [HttpPost("addExistingSword")]
+        public async Task<ActionResult> Post(int elemenID, int swordID)
         {
             try
             {
-                var newElement = _mapper.Map<Element>(elementCreateDto);
-                var result = await _elementDAl.ElementToExistingSword(newElement);
-                var elementDto = _mapper.Map<ElementToExistingSwordDTO>(result);
+                //var newElement = _mapper.Map<Element>(elementCreateDto);
+                 await _elementDAl.AddElementToExistingSword(elemenID, swordID);
+                //var elementDto = _mapper.Map<ElementToExistingSwordDTO>(result);
 
-                return CreatedAtAction("Get", new { id = result.ElementId }, elementDto);
+                return Ok("Sukses ditambahkan");
             }
             catch (Exception ex)
             {

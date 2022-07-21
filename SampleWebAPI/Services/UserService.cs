@@ -8,6 +8,7 @@ using System.Text;
 
 namespace SampleWebAPI.Services
 {
+
     public interface IUserService
     {
         AuthenticateResponse Authenticate(AuthenticateRequest model);
@@ -16,6 +17,7 @@ namespace SampleWebAPI.Services
     }
     public class UserService : IUserService
     {
+
         private List<User> _users = new List<User>
         {
 
