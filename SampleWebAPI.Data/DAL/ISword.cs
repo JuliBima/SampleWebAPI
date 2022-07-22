@@ -14,6 +14,7 @@ namespace SampleWebAPI.Data.DAL
 
         Task<Sword> InsertWithType(Sword sword);
 
-        Task<Sword> ExistingSword(Sword obj);
+       
+        Task AddExistingSword(int swordID, int elemenID);
     }
 }

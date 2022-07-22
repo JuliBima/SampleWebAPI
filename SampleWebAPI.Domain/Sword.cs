@@ -15,7 +15,7 @@ namespace SampleWebAPI.Domain
         public int SamuraiId { get; set; } 
         public List<Element> Elements { get; set; } = new List<Element>();
 
-        public int ElementId { get; set; }
+        
         public TypeSword TypeSwords { get; set; }
     }
 }

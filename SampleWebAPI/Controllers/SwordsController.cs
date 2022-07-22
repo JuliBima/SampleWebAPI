@@ -35,7 +35,7 @@ namespace SampleWebAPI.Controllers
             var results = await _swordDAL.GetWithType(skip);
             var swordwithtypeDTO = _mapper.Map<IEnumerable<SwordWithTypeDTO>>(results);
 
-            return swordwithtypeDTO;
+            return swordwithtypeDTO; 
         }
 
         [HttpGet("Name/{name}")]
@@ -130,16 +130,33 @@ namespace SampleWebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpPost("Existing")]
-        public async Task<ActionResult> Post(SwordToExistingElementDTO elementCreateDto)
+        //[HttpPost("Existing")]
+        //public async Task<ActionResult> Post(SwordToExistingElementDTO elementCreateDto)
+        //{
+        //    try
+        //    {
+        //        var newElement = _mapper.Map<Sword>(elementCreateDto);
+        //        var result = await _swordDAL.ExistingSword(newElement);
+        //        var elementDto = _mapper.Map<SwordToExistingElementDTO>(result);
+
+        //        return CreatedAtAction("Get", new { id = result.Id }, elementDto);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+        //}
+
+        [HttpPost("addExistingElement")]
+        public async Task<ActionResult> Post( int swordID, int elemenID)
         {
             try
             {
-                var newElement = _mapper.Map<Sword>(elementCreateDto);
-                var result = await _swordDAL.ExistingSword(newElement);
-                var elementDto = _mapper.Map<SwordToExistingElementDTO>(result);
+                
+                await _swordDAL.AddExistingSword(swordID, elemenID);
+                
 
-                return CreatedAtAction("Get", new { id = result.Id }, elementDto);
+                return Ok("Sukses ditambahkan");
             }
             catch (Exception ex)
             {
