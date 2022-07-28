@@ -46,6 +46,11 @@ namespace EcommerceWebAPI.Profiles
             CreateMap<KeranjangDTO, Keranjang>();
             CreateMap<Keranjang, KeranjangDTO>();
 
+            CreateMap<JumlahItemDTO, Keranjang>();
+            CreateMap<Keranjang, JumlahItemDTO>();
+
+            CreateMap<HargaProukDTO, Produk>();
+            CreateMap<Produk, HargaProukDTO>();
 
 
 
