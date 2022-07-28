@@ -28,11 +28,11 @@ namespace SampleWebAPI.Controllers
 
             return swordDTO;
         }
-        [HttpGet("WithType/{skip}")]
-        public async Task<IEnumerable<SwordWithTypeDTO>> GetWithType(int skip)
+        [HttpGet("WithType/{skip}/{take}")]
+        public async Task<IEnumerable<SwordWithTypeDTO>> GetWithType(int skip, int take)
         {
 
-            var results = await _swordDAL.GetWithType(skip);
+            var results = await _swordDAL.GetWithType(skip,take);
             var swordwithtypeDTO = _mapper.Map<IEnumerable<SwordWithTypeDTO>>(results);
 
             return swordwithtypeDTO; 

@@ -16,6 +16,18 @@ namespace SampleWebAPI.Data.DAL
         {
             _context = context;
         }
+
+        public async Task AddExistingSword(int swordID, int elemenID)
+        {
+            var sword = _context.Swords.FirstOrDefault(s => s.Id == swordID);
+            var element = _context.Elements.FirstOrDefault(s => s.ElementId == elemenID);
+            
+
+            element.Swords.Add(sword);
+
+            await _context.SaveChangesAsync();
+        }
+
         public async Task Delete(int id)
         {
             try
@@ -34,25 +46,25 @@ namespace SampleWebAPI.Data.DAL
 
 
 
-        public async Task<Sword> ExistingSword(Sword obj)
-        {
+        //public async Task<Sword> ExistingSword(Sword obj)
+        //{
 
-            try
-            {
-                var sword = _context.Swords.Find(obj.Id);
-                var element = _context.Elements.Find(obj.ElementId);
+        //    try
+        //    {
+        //        var sword = _context.Swords.Find(obj.Id);
+        //        var element = _context.Elements.Find(obj.ElementId);
 
-                element.Swords.Add(sword);
+        //        element.Swords.Add(sword);
 
-                await _context.SaveChangesAsync();
-                return obj;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"{ex.Message}");
-            }
+        //        await _context.SaveChangesAsync();
+        //        return obj;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception($"{ex.Message}");
+        //    }
 
-        }
+        //}
 
         public async Task<IEnumerable<Sword>> GetAll()
         {
@@ -72,12 +84,12 @@ namespace SampleWebAPI.Data.DAL
             return swords;
         }
 
-        public async Task<IEnumerable<Sword>> GetWithType(int skip)
-            
+
+        public async Task<IEnumerable<Sword>> GetWithType(int skip, int take)
+
         {
             var swordWithtype = await _context.Swords.Include(s => s.TypeSwords)
-                .Skip(skip)
-                .ToArrayAsync();
+                .Skip(skip).Take(take).ToArrayAsync();
             return swordWithtype;
             
         }

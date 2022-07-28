@@ -10,7 +10,7 @@ namespace SampleWebAPI.Data.DAL
     public interface ISword : ICrud<Sword>
     {
         Task<IEnumerable<Sword>> GetByName(string name);
-        Task<IEnumerable<Sword>> GetWithType(int skip);
+        Task<IEnumerable<Sword>> GetWithType(int skip, int take);
 
         Task<Sword> InsertWithType(Sword sword);
 
